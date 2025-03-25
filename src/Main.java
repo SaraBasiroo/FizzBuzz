@@ -1,15 +1,39 @@
+import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
-        for (int x = 1; x <= 100; x++){
-            if ((x % 3 == 0) && (x % 5 == 0)){
-                System.out.println("FizzBuzz");
-            } else if(x % 3 == 0){
-                System.out.println("Fizz");
-            } else if(x % 5 == 0){
-                System.out.println("Buzz");
-            } else {
-                System.out.println(x);
+        ArrayList<fizzBuzz> fizzbuzzList = new ArrayList<>();
+        fizzbuzzList.add(new fizzBuzz(3, "Fizz"));
+        fizzbuzzList.add(new fizzBuzz(5, "Buzz"));
+
+        int start = 1;
+        int end = 100;
+
+        for (int i = start; i < end; i++) {
+            String result = "";
+            for (fizzBuzz fb : fizzbuzzList) {
+                if (i % fb.getDivisor() == 0) {
+                    result += fb.getOutput();
+                }
             }
+            System.out.println(result.isEmpty() ? i : result);
         }
+    }
+}
+
+class fizzBuzz {
+    private int divisor;
+    private String output;
+
+    public fizzBuzz(int divisor, String output) {
+        this.divisor = divisor;
+        this.output = output;
+    }
+
+    public int getDivisor() {
+        return divisor;
+    }
+
+    public String getOutput() {
+        return output;
     }
 }
